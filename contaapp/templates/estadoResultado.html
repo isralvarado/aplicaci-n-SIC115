@@ -1,0 +1,119 @@
+{% extends "./plantilla_1.html"%} 
+{% load static %}
+
+{%block title%}
+    <title>CONTA STATION - Estado de Resultado</title>
+{%endblock%}
+
+    
+
+{%block body%}
+
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Presentación</h1>
+        
+    </div>
+
+    <!-- Contenido especifico -->
+    <div class="row">
+
+        <!-- Content Column derecha-->
+        <div  id = "divResultados"class="col-lg-10 mb-4" style="margin-left:90px; margin-right: 100px;">
+
+            <!-- Illustrations Finanzas-->
+            <div class="card shadow mb-4" style="text-align:center;">
+                <br>
+                
+                <h6 class="m-0 font-weight-bold text-primary">Conta Station</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Estado de resultado</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Del 1 al 31 de {{mes}} 2022</h6>
+                <h6 class="m-0 font-weight-bold text-primary">En dolares americanos</h6>
+               
+                <div class="card-body">
+                    
+                    <h4 class="small font-weight-bold">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th style="font-weight:bolder;">CUENTAS</th>
+                                        <th style="font-weight:bolder;">VALOR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight:bolder;text-align: left;">VENTAS TOTALES</td>
+                                        <td style="text-align: center;">{{ventaTotal.habercuenta}}</td> 
+                                    </tr>
+                                    {% for c in deudora %}
+                                    <tr>
+                                        {% if c.idcuenta == 4106 or c.idcuenta == 4107 %}
+                                        {%if c.debecuenta > 0%}
+                                        <td style="text-align: left;">&nbsp;&nbsp;{{c.nomcuenta}}</td>
+                                        <td>({{c.debecuenta}})</td> 
+                                        {%endif%}
+                                        {%endif%}   
+                                    </tr>
+                                    {%endfor%}
+                                    <tr>
+                                        <td style="font-weight:bolder;text-align: left;">VENTAS NETAS</td>
+                                        <td style="text-align: center;">{{ventasNetas}}</td> 
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight:bolder;text-align: left;">COSTO DE VENTAS</td>
+                                        <td style="text-align: center;">({{costoVentas}})</td> 
+                                    </tr>
+                                    <tr>
+                                        <td style="font-weight:bolder;text-align: left;">UTILIDAD BRUTA EN VENTAS</td>
+                                        <td style="text-align: center;">{{utilidadBruta}}</td> 
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align: left;">GASTOS DE OPERACIÓN</td>
+                                        <td style="text-align: center;"></td> 
+                                    </tr>
+                                    {% for c in gastos %}
+                                    <tr>
+                                        {%if c.debecuenta > 0%}
+                                        <td style="text-align: left;"> &nbsp;&nbsp;{{c.nomcuenta}}</td>
+                                        <td>({{c.debecuenta}})</td> 
+                                        {%endif%}
+                                          
+                                    </tr>
+                                    {%endfor%}
+                                    <tr>
+                                        <td style="font-weight:bolder;text-align: left;">TOTAL DE GASTOS DE OPERACIÓN</td>
+                                        <td style="text-align: center;">({{totalGastos}})</td> 
+                                    </tr>
+                                    <tr>
+                                        
+                                        <td style="font-weight:bolder;text-align: left;">UTILIDAD ANTES DE IMPUESTO</td>
+                                        <td style="text-align: center;">{{utilidadAntesImpuesto}}</td> 
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </h4>
+                    
+                    <div class="row">
+                        <div class="card-body">
+                            <Label>F: _______________________</Label><br>
+                            
+                            <label>Contador</label>
+                        </div>
+                        <div class="card-body">
+                            <Label>F: _______________________</Label><br>
+                            
+                            <label>Propietario</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+{% endblock %}
